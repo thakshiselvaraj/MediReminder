@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MediSafe</string>
+    <string name="topnav">Eye Hospital Kandy</string>
+    <string name="specify">Ophthalmology</string>
+    <string name="docName">Dr.Saman Senanayaka</string>
+    <string name="address1">William Gopallawa Mawatha,</string>
+    <string name="address2">Kandy</string>
+    <string name="phone">0812056446</string>
+    <string name="appoint">Upcoming Appointments</string>
+    <string name="appointment_details">Monday,16 Aug</string>
+    <string name="appointment">Add An Appointment</string>
+    <string name="head">Add Appointment Details</string>
+    <string name="name">Center Name</string>
+    <string name="special">Speciality</string>
+    <string name="name_doctor">Doctor Name</string>
+    <string name="address_enter">Address</string>
+    <string name="phone_enter">Phone</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="btn">Add An Appointment</string>
+    <string name="ntify">You will receive a notification the day before the appointment</string>
+
+
+    <string name="head2">Dr.Saman Senanayaka</string>
+    <string name="btn1">Close</string>
+    <string name="docNamee">Dr.Saman Senanayaka</string>
+
+</resources>
