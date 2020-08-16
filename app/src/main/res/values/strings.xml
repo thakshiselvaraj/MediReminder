@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MediSafe</string>
+    <string name="title_medicine_name">Medicine Name</string>
+    <string name="medicine_days">Medicine Days</string>
+    <string name="check_box">Every Day</string>
+    <string name="tooltext">New Medicine</string>
+    <string name="title_reminder">Reminder</string>
+
+    <string-array name="names">
+        <item>Pill(s)</item>
+        <item>Puff(s)</item>
+        <item>Drop(s)</item>
+        <item>Injection(s)</item>
+    </string-array>
+    <string name="add_reminder">Add Reminder Time</string>
+    <string name="save_info">Save</string>
+    <string name="dispaly_info">Adderall</string>
+    <string name="update_Save">Submt</string>
+</resources>
