@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     private Button button5;
     private Button button4;
+    private Button button10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
                 openaddpage();
             }
         });
+
+        button10 = (Button) findViewById(R.id.button10);
+        button10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openhomepage();
+            }
+        });
     }
 
     public void opennextpage(){
@@ -40,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openaddpage(){
         Intent intent = new Intent(this, careCenter.class);
+        startActivity(intent);
+    }
+
+    public void openhomepage(){
+        Intent intent = new Intent(this, homepage.class);
         startActivity(intent);
     }
 }
