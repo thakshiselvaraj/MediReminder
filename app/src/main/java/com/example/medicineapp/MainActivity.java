@@ -2,46 +2,68 @@ package com.example.medicineapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.firebase.FirebaseAppLifecycleListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
 
-    private Button btn4;
-    EditText editTextTime4;
-    TimePickerDialog timePickerDialog;
-    Calendar calendar;
-    int currentHour;
-    int currentMinute;
-    String ampm;
-    AppCompatCheckBox checkBox1;
-    CheckBox sunday;
-    CheckBox monday;
-    CheckBox tuesday;
-    CheckBox wednesday;
-    CheckBox thursday;
-    CheckBox friday;
-    CheckBox saturday;
-    private View rootView;
+     Button btn_save;
+    EditText medi_name;
+    EditText dosage1;
+    Spinner mySpinner;
+    TextView spinvalue;
+    String item;
+
+
+
+    String[] medi_type = {"Choose Type","Pill(s)","Puffs(s)","Drop(s)","Injection(s)"};
 
 
 
 
+    DatabaseReference reff;
 
-    private boolean[] dayOfWeekList = new boolean[7];
+    Medicine medicine;
+
+    private int notificationId = 1;
+
+    TimePicker timePicker;
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,49 +71,102 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        editTextTime4 = findViewById(R.id.editTextTime4);
-        editTextTime4.setOnClickListener(new View.OnClickListener() {
+        medi_name = (EditText) findViewById(R.id.title_medicine_name);
+
+
+
+
+
+
+
+
+        dosage1 = (EditText) findViewById(R.id.dosage_medi);
+
+
+        spinvalue = findViewById(R.id.selected_type);
+
+
+
+        mySpinner = (Spinner) findViewById(R.id.spinner1);
+        mySpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,medi_type);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(arrayAdapter);
+
+
+        btn_save=(Button) findViewById(R.id.btn_save);
+        medicine = new Medicine();
+        reff  = FirebaseDatabase.getInstance().getReference().child("Medicine");
+
+
+
+
+        btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar = Calendar.getInstance();
-                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-                currentMinute = calendar.get(Calendar.MINUTE);
+
+                //Insert to DB
+               SaveValue(item);
+               Float dos = Float.parseFloat(dosage1.getText().toString().trim());
 
 
-                timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hourofDay, int minutes) {
-                        if (hourofDay >= 12) {
-                            ampm = "PM";
-                        } else {
-                            ampm = "AM";
-                        }
+                medicine.setMediname(medi_name.getText().toString().trim());
+                medicine.setDosage(dos);
 
-                        editTextTime4.setText(String.format("%02d:%02d", hourofDay, minutes) + ampm);
-                    }
-                }, currentHour, currentMinute, false);
 
-                timePickerDialog.show();
+
+                reff.push().setValue(medicine);
+                Toast.makeText(MainActivity.this,"data insert successfully",Toast.LENGTH_LONG).show();
+
+                //Next Activity intent
+                opendisplayDetails();
+
+                //alarm notification
+
+                timePicker = findViewById(R.id.timepicker);
+                medi_name = findViewById(R.id.title_medicine_name);
+                dosage1 = findViewById(R.id.dosage_medi);
+                spinvalue = findViewById(R.id.selected_type);
+
+
+                Intent intent = new Intent(MainActivity.this,AlramReceiver.class);
+                intent.putExtra("notificationId",notificationId);
+                intent.putExtra("todo",medi_name.getText().toString());
+
+
+                intent.putExtra("todo1",dosage1.getText().toString());
+
+
+                intent.putExtra("todo2",spinvalue.getText().toString());
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                if (view.getId() == R.id.btn_save) {
+                    int hour = timePicker.getHour();
+                    int minute = timePicker.getMinute();
+
+                    //calender time
+                    Calendar startTime = Calendar.getInstance();
+                    startTime.set(Calendar.HOUR_OF_DAY, hour);
+                    startTime.set(Calendar.MINUTE, minute);
+                    startTime.set(Calendar.SECOND, 0);
+                    long alarmStarTime = startTime.getTimeInMillis();
+
+                    alarm.set(AlarmManager.RTC_WAKEUP, alarmStarTime, pendingIntent);
+
+                    Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_LONG).show();
+                }
+
+
+
             }
         });
 
 
-        TextView txtVMsg = findViewById(R.id.txt1);
-        txtVMsg.setText(R.string.title_medicine_name);
 
-        TextView txtVMsg2 = findViewById(R.id.txt2);
-        txtVMsg2.setText(R.string.medicine_days);
-
-        TextView checkBox1 = findViewById(R.id.checkBox1);
-        checkBox1.setText(R.string.check_box);
-
-        sunday =findViewById(R.id.dv_sunday);
-        monday = findViewById(R.id.dv_monday);
-        tuesday = findViewById(R.id.dv_tuesday);
-        wednesday = findViewById(R.id.dv_wednesday);
-        thursday = findViewById(R.id.dv_thursday);
-        friday = findViewById(R.id.dv_friday);
-        saturday =findViewById(R.id.dv_saturday);
 
 
 
@@ -100,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
+
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.names));
 
@@ -108,85 +183,45 @@ public class MainActivity extends AppCompatActivity {
         mySpinner.setAdapter(myAdapter);
 
 
-        TextView txtVMsgnew1 = findViewById(R.id.btn4);
-        txtVMsgnew1.setText(R.string.save_info);
+
 
 
 
     }
 
 
-    public void onCheckboxClicked(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
 
-        /** Checking which checkbox was clicked */
-        switch (view.getId()) {
-            case R.id.dv_monday:
-                if (checked) {
-                    dayOfWeekList[1] = true;
-                } else {
-                    dayOfWeekList[1] = false;
-                    checkBox1.setChecked(false);
-                }
-                break;
-            case R.id.dv_tuesday:
-                if (checked) {
-                    dayOfWeekList[2] = true;
-                } else {
-                    dayOfWeekList[2] = false;
-                    checkBox1.setChecked(false);
-                }
-                break;
-            case R.id.dv_wednesday:
-                if (checked) {
-                    dayOfWeekList[3] = true;
-                } else {
-                    dayOfWeekList[3] = false;
-                    checkBox1.setChecked(false);
-                }
-                break;
-            case R.id.dv_thursday:
-                if (checked) {
-                    dayOfWeekList[4] = true;
-                } else {
-                    dayOfWeekList[4] = false;
-                    checkBox1.setChecked(false);
-                }
-                break;
-            case R.id.dv_friday:
-                if (checked) {
-                    dayOfWeekList[5] = true;
-                } else {
-                    dayOfWeekList[5] = false;
-                    checkBox1.setChecked(false);
-                }
-                break;
-            case R.id.dv_saturday:
-                if (checked) {
-                    dayOfWeekList[6] = true;
-                } else {
-                    dayOfWeekList[6] = false;
-                    checkBox1.setChecked(false);
-                }
-                break;
-            case R.id.dv_sunday:
-                if (checked) {
-                    dayOfWeekList[0] = true;
-                } else {
-                    dayOfWeekList[0] = false;
-                    checkBox1.setChecked(false);
-                }
-                break;
-            case R.id.checkBox1:
-                LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.checkbox_layout);
-                for (int i = 0; i < ll.getChildCount(); i++) {
-                    View v = ll.getChildAt(i);
-                    ((CheckBox) v).setChecked(checked);
-                    onCheckboxClicked(v);
-                }
-                break;
+
+
+    private void opendisplayDetails() {
+        Intent intent = new Intent(this, DisplayDetails.class);
+        startActivity(intent);
+    }
+
+
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            item = (String) mySpinner.getSelectedItem();
+            spinvalue.setText( item);
+
+
+    }
+
+
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+
+    void SaveValue (String item){
+        if(item == "Choose Type"){
+            Toast.makeText(this, "Please select a medicine type",Toast.LENGTH_SHORT).show();
+        }else{
+            medicine.setType(item);
+
+            Toast.makeText(this, "value saved",Toast.LENGTH_SHORT).show();
+
         }
     }
-
 
 }
