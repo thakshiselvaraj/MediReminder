@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "848872955061",
+    "firebase_url": "https://medisafe-c37d4.firebaseio.com",
+    "project_id": "medisafe-c37d4",
+    "storage_bucket": "medisafe-c37d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848872955061:android:f6b738bd206009197a32fc",
+        "android_client_info": {
+          "package_name": "com.example.medisafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848872955061-4t5ulbs57omfh2emld5i5p5p6betu1ae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medisafe",
+            "certificate_hash": "e55159fbae0cf3ac50710c1509230b226a5aabc1"
+          }
+        },
+        {
+          "client_id": "848872955061-bb1tkqdm1f4qqp8unlas2djgki994gch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy2rc0rGxKLIvy2dRvb2hX_s63VsiaBTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848872955061-bb1tkqdm1f4qqp8unlas2djgki994gch.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
