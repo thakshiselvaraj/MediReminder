@@ -5,15 +5,11 @@
     <string name="special">Speciality</string>
     <string name="name_doctor">Doctor Name</string>
     <string name="address_enter">Address</string>
-    <string name="phone_enter">Phone</string>
+    <string name="phone_enter">Contact No</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="btn">Add An Appointment</string>
-    <string name="centername">Center Name</string>
-    <string name="speci">Speciality</string>
-    <string name="dName">Doctor Name</string>
-    <string name="address1">Address</string>
-    <string name="centerPhone">Contact No</string>
+    <string name="detail">Your Appointments</string>
 
 
 </resources>

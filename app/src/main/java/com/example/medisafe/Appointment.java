@@ -7,6 +7,8 @@ public class Appointment {
     private String docName;
     private String address;
     private Integer phone;
+    private String date;
+    private String time;
 
     public Appointment() {
     }
@@ -49,5 +51,21 @@ public class Appointment {
 
     public void setPhone(Integer phone) {
         this.phone = phone;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
