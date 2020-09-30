@@ -49,5 +49,11 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="40dp" />
 
+        <Button
+            android:id="@+id/buttonHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +37,7 @@ public class AppointmentDetail extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     Appointment appointment;
+    Button button;
 
 
     @Override
@@ -43,11 +46,19 @@ public class AppointmentDetail extends AppCompatActivity {
         setContentView(R.layout.activity_appointment_detail);
 
         recyclerView = findViewById(R.id.detailView);
+        button = findViewById(R.id.buttonHome);
 
        // recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Appointment");
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHomePage();
+            }
+        });
     }
 
     protected void onStart(){
@@ -125,5 +136,12 @@ public class AppointmentDetail extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
+    public void openHomePage(){
+
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
+
 
 }
