@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Appfi</string>
+    <string name="enter_water_amount_in_ml">enter water amount in ml</string>
+    <string name="medisafe">MediSafe</string>
+    <string name="water_consumption">Water Consumption</string>
+    <string name="save_reminder">Save Reminder</string>
+    <string name="show">Show</string>
+    <string name="enter_time">enter time</string>
+    <string name="enter_date">enter date</string>
+</resources>
