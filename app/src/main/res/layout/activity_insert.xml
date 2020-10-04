@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".insert">
+
+    <TextView
+        android:id="@+id/head"
+        android:layout_width="409dp"
+        android:layout_height="56dp"
+        android:background="@android:color/holo_red_light"
+        android:fontFamily="@font/aclonica"
+        android:text="@string/medisafe"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="-2dp" />
+
+    <LinearLayout
+        android:id="@+id/tbmi"
+        android:layout_width="409dp"
+        android:layout_height="673dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="57dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="@string/add_your_information" />
+
+        <EditText
+            android:id="@+id/tname"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="@string/name"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:text="@string/gender" />
+
+        <Spinner
+            android:id="@+id/sgender"
+            android:layout_width="match_parent"
+            android:layout_height="38dp" />
+
+        <EditText
+            android:id="@+id/tblood"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:ems="10"
+            android:hint="@string/tblood"
+            android:inputType="textPersonName"
+            android:text="@string/tname" />
+
+        <Spinner
+            android:id="@+id/sblood"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+
+        <EditText
+            android:id="@+id/tbmi"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:ems="10"
+            android:hint="Enter Your BMI"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/tbloodpressure"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:ems="10"
+            android:hint="Enter Blood Pressure level"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/tCholestrol"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="Enter Your Cholestrol"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/tcholesdescription"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:ems="10"
+            android:hint="Enter Cholestrol Description"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/tdiabetes"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="Enter Your Diabetes"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/tHealth"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:ems="10"
+            android:hint="Enter Your Health Issues"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/tallergy"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="Enter Allergy Details"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnsave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SAVE"
+                tools:layout_editor_absoluteX="166dp"
+                tools:layout_editor_absoluteY="36dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

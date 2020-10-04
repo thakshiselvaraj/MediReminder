@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Report Information</string>
+    <string name="add_your_information">Add Your Information</string>
+    <string name="tbloodpressure">Enter Your Blood Pressure</string>
+    <string name="tbmi">Enter Your BMI</string>
+    <string name="tCholestrol">Enter Your Cholestrol Level</string>
+    <string name="tname">Name</string>
+    <string name="tblood">Enter Your Blood Group</string>
+    <string name="tcholesDescription">Add Description About Your Cholestrol</string>
+    <string name="tallergy">Enter Your Allergy Description</string>
+    <string name="tHealth">Enter Your Health Issues</string>
+    <string name="tdiabetes">Enter Your Diabetes level</string>
+    <string name="gender">Choose Gender</string>
+    <string name="name">Enter Your Name</string>
+    <string name="medisafe">MediSafe</string>
+</resources>
