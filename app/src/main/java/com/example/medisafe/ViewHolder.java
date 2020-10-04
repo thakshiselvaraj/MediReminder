@@ -21,10 +21,10 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(Context context, String cname, String sp, String docName, String Add, int cphone, String adate, String aTime){
+    public void setData(Context context, String cname, String sp, String docName, String Add, int cphone, String date, String time){
         TextView textView = itemView.findViewById(R.id.txtViewRow);
-        textView.setText("Center Name: "+cname+ "\n" + "Specialization"+ sp + "\n"+ "Doctor Name: "+docName+ "\n"
-                            + "Location: "+Add+ "\n"+ "Phone"+ "\n"  + "Date: "+adate+ "\n" + "Time: "+aTime);
+        textView.setText("Center Name : "+cname+ "\n" + "Specialization : "+ sp + "\n"+ "Doctor Name : "+docName+ "\n"
+                            + "Location : "+Add+ "\n"+ "Phone : "+cphone+ "\n"+ "Date : "+date+ "\n"+ "Time : "+time);
     }
 
     private ViewHolder.Clicklistener mClickListener;

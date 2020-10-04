@@ -37,7 +37,9 @@ public class AppointmentDetail extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase firebaseDatabase;
     Appointment appointment;
-    Button button;
+    Button buttonAddnew;
+    Button home;
+
 
 
     @Override
@@ -46,17 +48,22 @@ public class AppointmentDetail extends AppCompatActivity {
         setContentView(R.layout.activity_appointment_detail);
 
         recyclerView = findViewById(R.id.detailView);
-        button = findViewById(R.id.buttonHome);
-
-       // recyclerView.setHasFixedSize(true);
+        buttonAddnew= (Button)findViewById(R.id.buttonAddNew);
+        home = (Button)findViewById(R.id.homeButton);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         dbRef = FirebaseDatabase.getInstance().getReference().child("Appointment");
 
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonAddnew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHomePage();
+                newAppPage();
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoHomePage();
             }
         });
     }
@@ -73,7 +80,7 @@ public class AppointmentDetail extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Appointment model) {
 
                 holder.setData(getApplicationContext(), model.getName(), model.getSpecial(), model.getDocName(),
-                        model.getAddress(), model.getPhone(), model.getDate(), model.getTime());
+                        model.getAddress(), model.getPhone(), model.getDate(),model.getTime());
 
                 holder.setOnClickListener(new ViewHolder.Clicklistener() {
                     @Override
@@ -137,11 +144,22 @@ public class AppointmentDetail extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void openHomePage(){
+    public void newAppPage(){
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoHomePage(){
 
         Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
+
     }
+
+
+
+
 
 
 }
