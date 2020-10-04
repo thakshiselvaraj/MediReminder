@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,10 +17,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.medicineapp.Appoinment.HomePage;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.FirebaseAppLifecycleListener;
@@ -47,11 +50,18 @@ public class DisplayDetails extends AppCompatActivity {
     Medicine medicine;
    String name;
 
+   Button btn_add;
+   Button btn_home;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_details);
+         setContentView(R.layout.activity_display_details);
+
+
+        btn_add = findViewById(R.id.btn_add);
+        btn_home = findViewById(R.id.btn_home);
 
         reff  = FirebaseDatabase.getInstance().getReference().child("Medicine");
         Query query = reff.child("Medicine");
@@ -88,6 +98,22 @@ public class DisplayDetails extends AppCompatActivity {
                 datepicker.setText(date);
             }
         };
+
+
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                openalmain();
+            }
+        });
+
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openhome();
+            }
+        });
     }
 
     @Override
@@ -100,7 +126,7 @@ public class DisplayDetails extends AppCompatActivity {
         final FirebaseRecyclerAdapter<Medicine, ViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Medicine, ViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, Medicine model) {
-                holder.setData(getApplicationContext(),model.getMediname(),model.getDosage(),model.getType());
+                holder.setData(getApplicationContext(),model.getMediname(),model.getDosage(),model.getType(),model.getTime());
 
                 holder.setOnClickListener(new ViewHolder.Clicklistener() {
                     @Override
@@ -135,7 +161,7 @@ public class DisplayDetails extends AppCompatActivity {
 
     private  void showDeleteDataDialog(final String name){
         AlertDialog.Builder builder = new AlertDialog.Builder(DisplayDetails.this);
-        builder.setMessage("Are you sure to Delete this");
+        builder.setMessage("Are you sure you want to permanently remove this item?");
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -165,4 +191,17 @@ public class DisplayDetails extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
+    private void openalmain() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void openhome(){
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
+
+
+
 }

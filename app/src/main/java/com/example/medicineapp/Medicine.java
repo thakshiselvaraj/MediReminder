@@ -6,6 +6,7 @@ public class Medicine {
     public String mediname;
     public String type;
     public Float dosage;
+    public String time;
 
     public Medicine() {
     }
@@ -32,5 +33,13 @@ public class Medicine {
 
     public void setDosage(Float dosage) {
         this.dosage = dosage;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

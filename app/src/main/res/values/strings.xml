@@ -18,4 +18,20 @@
     <string name="toolText2">Display Records</string>
 
 
+    <string name="head">Add Appointment Details</string>
+    <string name="centerName">Center Name</string>
+    <string name="special">Speciality</string>
+    <string name="name_doctor">Doctor Name</string>
+    <string name="address_enter">Address</string>
+    <string name="phone_enter">Contact No</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="btn">Add An Appointment</string>
+    <string name="detail">Your Appointments</string>
+    <string name="label1">MY INFORMATION</string>
+    <string name="label2">MEDICINE DOSAGE</string>
+    <string name="label3">APPOINTMENT DETAIL</string>
+    <string name="label4">WATER CONSUMPTION</string>
+
+
 </resources>
