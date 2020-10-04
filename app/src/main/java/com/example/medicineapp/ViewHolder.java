@@ -21,11 +21,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
-    public void setData(Context context, String mediName, Float dosage, String type ){
+    public void setData(Context context, String mediName, Float dosage, String type,String time ){
 
-       TextView textView = itemView.findViewById(R.id.textview_row);
+        TextView textView2 = itemView.findViewById(R.id.tv_med_time);
+        TextView textView = itemView.findViewById(R.id.textview_row);
 
-        textView.setText("MedicineName: " + mediName + "\n" + "Dosage: " + dosage + "\n" + "MedicineType: " + type);
+        textView2.setText(   time);
+        textView.setText("Medicine Name: " + mediName + "\n" + "Dosage: " + dosage + "\n" + "Medicine Type: " + type  );
 
     }
 

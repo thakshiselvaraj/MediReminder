@@ -14,17 +14,17 @@ import androidx.core.app.NotificationCompat;
 public class AlramReceiver extends BroadcastReceiver {
     private  static  final String CHANNEL_ID= "SAMPLE_CHANNEL";
 
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
         int notificationId = intent.getIntExtra("notificationId",0);
         String message = intent.getStringExtra("todo");
 
-        String message1 = intent.getStringExtra("todo1");
 
-        String message2 = intent.getStringExtra("todo");
 
-        Intent mainIntent = new Intent(context,MainActivity.class);
+        Intent mainIntent = new Intent(context,DisplayDetails.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context,0,mainIntent,0);
 
         NotificationManager myNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -36,15 +36,18 @@ public class AlramReceiver extends BroadcastReceiver {
 
             NotificationChannel channel = new  NotificationChannel(CHANNEL_ID,channel_name,importance);
             myNotificationManager.createNotificationChannel(channel);
+
+
+
         }
+
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,CHANNEL_ID)
 
                         .setSmallIcon(android.R.drawable.ic_dialog_info)
                         .setContentTitle("It's time to take your Medicines")
                         .setContentText(message)
-                        .setContentText(message1)
-                        .setContentText(message2)
+
                         .setContentIntent(contentIntent)
                         .setPriority(NotificationCompat.PRIORITY_MAX)
                         .setAutoCancel(true);
@@ -55,4 +58,6 @@ public class AlramReceiver extends BroadcastReceiver {
 
 
     }
+
+
 }

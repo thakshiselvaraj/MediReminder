@@ -56,7 +56,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-
+    EditText choosetime;
+    TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currenthour;
+    int currentminute;
+    String ampm;
 
 
 
@@ -99,6 +104,41 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         medicine = new Medicine();
         reff  = FirebaseDatabase.getInstance().getReference().child("Medicine");
 
+        choosetime = findViewById(R.id.choosetime);
+
+
+        choosetime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int currenthour = calendar.get(Calendar.HOUR_OF_DAY);
+                int currentminute = calendar.get(Calendar.MINUTE);
+
+
+
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        if (hourOfDay >= 12) {
+                            ampm = "PM";
+                        } else {
+                            ampm = "AM";
+                        }
+                        choosetime.setText(String.format("%02d:%02d", hourOfDay, minutes) + ampm);
+
+
+
+
+                    }
+                }, currenthour, currentminute, false);
+
+                timePickerDialog.show();
+
+            }
+        });
+
+
 
 
 
@@ -107,62 +147,69 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View view) {
 
                 //Insert to DB
-               SaveValue(item);
-               Float dos = Float.parseFloat(dosage1.getText().toString().trim());
+                SaveValue(item);
+                Float dos = Float.parseFloat(dosage1.getText().toString().trim());
 
 
                 medicine.setMediname(medi_name.getText().toString().trim());
+                medicine.setTime(choosetime.getText().toString().trim());
                 medicine.setDosage(dos);
 
 
-
                 reff.push().setValue(medicine);
-                Toast.makeText(MainActivity.this,"data insert successfully",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "data insert successfully", Toast.LENGTH_LONG).show();
 
                 //Next Activity intent
                 opendisplayDetails();
 
                 //alarm notification
 
-                timePicker = findViewById(R.id.timepicker);
+
                 medi_name = findViewById(R.id.title_medicine_name);
                 dosage1 = findViewById(R.id.dosage_medi);
                 spinvalue = findViewById(R.id.selected_type);
 
 
-                Intent intent = new Intent(MainActivity.this,AlramReceiver.class);
-                intent.putExtra("notificationId",notificationId);
-                intent.putExtra("todo",medi_name.getText().toString());
+                String namevalue = medi_name.getText().toString();
+                Intent intent= new Intent(MainActivity.this,AddReminder.class);
+                intent.putExtra("Name",namevalue);
+                startActivity(intent);
 
 
-                intent.putExtra("todo1",dosage1.getText().toString());
+                /*Intent intent = new Intent(MainActivity.this, AlramReceiver.class);
+                intent.putExtra("notificationId", notificationId);
+                intent.putExtra("todo", medi_name.getText().toString());
 
 
-                intent.putExtra("todo2",spinvalue.getText().toString());
-
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                if (view.getId() == R.id.btn_save) {
-                    int hour = timePicker.getHour();
-                    int minute = timePicker.getMinute();
 
-                    //calender time
-                    Calendar startTime = Calendar.getInstance();
-                    startTime.set(Calendar.HOUR_OF_DAY, hour);
-                    startTime.set(Calendar.MINUTE, minute);
-                    startTime.set(Calendar.SECOND, 0);
-                    long alarmStarTime = startTime.getTimeInMillis();
+                    Calendar calendar = Calendar.getInstance();
+                    int currenthour = calendar.get(Calendar.HOUR_OF_DAY);
+                    int currentminute = calendar.get(Calendar.MINUTE);
 
-                    alarm.set(AlarmManager.RTC_WAKEUP, alarmStarTime, pendingIntent);
+                //calender time
+                Calendar startTime = Calendar.getInstance();
+                startTime.set(Calendar.HOUR_OF_DAY, currenthour);
+                startTime.set(Calendar.MINUTE, currenthour);
+                startTime.set(Calendar.SECOND, 0);
+                long alarmStarTime = startTime.getTimeInMillis();
 
-                    Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_LONG).show();
-                }
+                if (calendar.before(Calendar.getInstance()))
+                    alarmStarTime += AlarmManager.INTERVAL_DAY * 7;
 
+                assert alarm != null;
 
+                alarm.set(AlarmManager.RTC_WAKEUP, alarmStarTime, pendingIntent);
 
+                Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_LONG).show();*/
             }
+
+
+
+
         });
 
 

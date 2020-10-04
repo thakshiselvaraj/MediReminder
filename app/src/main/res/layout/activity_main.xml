@@ -5,14 +5,16 @@
     android:id="@+id/rd6"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="#F8F4EF"
     tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
         android:text="@string/title_medicine_name"
         android:textColor="#81DA44"
         android:textSize="18sp"
@@ -24,29 +26,31 @@
         android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
         android:text="@string/medicine_days"
         android:textColor="#81DA44"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TimePicker
-        android:id="@+id/timepicker"
-        android:layout_width="220dp"
-        android:layout_height="322dp"
-        android:scaleX="0.75"
-        android:scaleY="0.75"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.364" />
 
-    //
+    <EditText
+        android:id="@+id/choosetime"
+        android:layout_width="370dp"
+        android:layout_height="49dp"
+        android:background="#E4C3B8"
+        android:backgroundTint="#E4C3B8"
+        android:ems="10"
+        android:hint="Choose Time"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.449" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
@@ -88,23 +92,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar1"
-        app:layout_constraintVertical_bias="0.669" />
-
-    <EditText
-        android:id="@+id/dosage_medi"
-        android:layout_width="79dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="44dp"
-        android:ems="10"
-        android:hint="Dosage"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
+        app:layout_constraintVertical_bias="0.577" />
 
     <Button
         android:id="@+id/btn_save"
@@ -121,11 +112,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="380dp"
-        android:layout_height="76dp"
+        android:layout_width="372dp"
+        android:layout_height="51dp"
         android:background="#FF9800"
         android:backgroundTint="#A9D9DF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -138,46 +128,60 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="#BFE8ED"
+            android:background="#E4C3B8"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/title_medicine_name"
-                android:layout_width="match_parent"
-                android:layout_height="81dp"
+                android:layout_width="357dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Medicine Name"
                 android:inputType="textPersonName" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="404dp"
-        android:layout_height="62dp"
+        android:layout_width="364dp"
+        android:layout_height="45dp"
+        android:background="#BFE8ED"
+        android:backgroundTint="#E4C3B8"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar1"
-        app:layout_constraintVertical_bias="0.897">
+        app:layout_constraintVertical_bias="0.7">
+
 
         <TextView
             android:id="@+id/selected_type"
-            android:layout_width="242dp"
-            android:layout_height="50dp"
+            android:layout_width="143dp"
+            android:layout_height="45dp"
             android:layout_margin="10dp"
-            android:hint="choose Type"
-            android:textSize="24sp" />
-
+            android:gravity="center"
+            android:hint="Choose Type"
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:gravity="center" />
+
+        <EditText
+            android:id="@+id/dosage_medi"
+            android:layout_width="79dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="36dp"
+            android:ems="10"
+            android:hint="Dosage"
+            android:inputType="numberSigned"
+            android:text="1.0" />
 
 
     </LinearLayout>
