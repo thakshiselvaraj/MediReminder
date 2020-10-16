@@ -32,7 +32,7 @@ public class activityAppoinment extends AppCompatActivity implements TimePickerD
     DatabaseReference dbRef;
     Appointment appointment;
     FirebaseDatabase firebaseDatabase;
-    Button buttonH;
+    Button buttonView;
 
     private static final String TAG = "MainActivity";
     private TextView displayDate;
@@ -126,6 +126,15 @@ public class activityAppoinment extends AppCompatActivity implements TimePickerD
             }
 
 
+
+        });
+
+        buttonView = (Button)findViewById(R.id.button1);
+        buttonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openappoinments();
+            }
         });
     }
 
@@ -142,4 +151,10 @@ public class activityAppoinment extends AppCompatActivity implements TimePickerD
         textView.setText(hourOfDay + ":" + minute);
 
     }
+    public void openappoinments (){
+        Intent intent = new Intent(this, AppointmentDetail.class);
+        startActivity(intent);
+    }
+
+
 }

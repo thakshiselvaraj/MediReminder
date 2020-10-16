@@ -68,7 +68,7 @@
             android:gravity="center_vertical"
             android:text="@string/label1"
             android:textColor="#FF5722"
-            android:textSize="24dp" />
+            android:textSize="25dp" />
 
         <Button
             android:id="@+id/buttonInfo"
@@ -106,7 +106,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/label2"
                 android:textColor="#FF5722"
-                android:textSize="22dp" />
+                android:textSize="25dp" />
 
             <Button
                 android:id="@+id/buttonMed"
@@ -142,7 +142,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/label3"
                 android:textColor="#FF5722"
-                android:textSize="20dp"
+                android:textSize="24dp"
                 android:fontFamily="@font/baloo"/>
 
             <Button
@@ -181,7 +181,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/label4"
                 android:textColor="#FF5722"
-                android:textSize="20dp"
+                android:textSize="24dp"
                 android:fontFamily="@font/baloo"/>
 
             <Button

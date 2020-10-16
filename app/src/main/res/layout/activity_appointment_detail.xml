@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/detail"
+
         android:textColor="#FF5722"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,25 +41,40 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="-62dp">
 
 
         <LinearLayout
             android:layout_width="409dp"
             android:layout_height="544dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="60dp"
             android:orientation="vertical"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="58dp">
 
 
+            <Button
+                android:id="@+id/homeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout"
+                android:backgroundTint="#8EEA23"
+                android:text="Back To Home"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15dp"
+                tools:ignore="MissingConstraints">
+
+            </Button>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/detailView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginLeft="1dp"
                 android:layout_marginRight="15dp" />
 
             <Button
@@ -68,22 +84,14 @@
                 android:layout_marginLeft="150dp"
                 android:background="@drawable/layout"
                 android:gravity="center"
+                android:textSize="16dp"
                 android:text="Add New"
                 android:textColor="#FF5722" />
 
-            <Button
-                android:id="@+id/homeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="250dp"
-                android:background="@drawable/layout"
-                android:backgroundTint="#8EEA23"
-                android:text="Home"
-                android:textColor="@color/colorPrimary">
-
-            </Button>
 
 
         </LinearLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
